@@ -1,9 +1,10 @@
 package org.deblock.exercise.api.v1.contract;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.deblock.exercise.serializer.IsoDateTimeSerializer;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public record FlightSearchResult(
         String airline,
@@ -11,10 +12,9 @@ public record FlightSearchResult(
         BigDecimal fare,
         String departureAirportCode,
         String destinationAirportCode,
-        @JsonFormat(pattern = "yyyy-MM-dd")
 
-        LocalDateTime departureDate,
-        @JsonFormat(pattern = "yyyy-MM-dd")
-
-        LocalDateTime arrivalDate) {
+        @JsonSerialize(using = IsoDateTimeSerializer.class)
+        Instant departureDate,
+        @JsonSerialize(using = IsoDateTimeSerializer.class)
+        Instant arrivalDate) {
 }
