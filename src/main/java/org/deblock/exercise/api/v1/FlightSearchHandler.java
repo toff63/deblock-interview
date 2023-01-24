@@ -1,5 +1,6 @@
 package org.deblock.exercise.api.v1;
 
+import lombok.extern.log4j.Log4j2;
 import org.deblock.exercise.api.v1.contract.FlightSearchRequest;
 import org.deblock.exercise.api.v1.contract.FlightSearchResult;
 import org.deblock.exercise.api.v1.contract.Supplier;
@@ -17,11 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Log4j2
 public class FlightSearchHandler {
+    final private Map<SearchProvider, Supplier> searchProviderConverter = Map.of(SearchProvider.ToughJet, Supplier.ToughJet, SearchProvider.CrazyAir, Supplier.CrazyAir);
     @Inject
     FlightSearchService service;
-
-    final private Map<SearchProvider, Supplier> searchProviderConverter = Map.of(SearchProvider.ToughJet, Supplier.ToughJet, SearchProvider.CrazyAir, Supplier.CrazyAir);
 
     private FlightSearchResult convert(Flight flight) {
         return new FlightSearchResult(
@@ -37,8 +38,10 @@ public class FlightSearchHandler {
 
     public ServerResponse searchFlight(ServerRequest request) throws ServletException, IOException {
         FlightSearchRequest searchRequest = request.body(FlightSearchRequest.class);
-        List<Flight> flights = service.search(searchRequest.origin(), searchRequest.destination(), searchRequest.departureDate(), searchRequest.returnDate(), searchRequest.numberOfPassenger());
+        log.info(searchRequest);
+        List<Flight> flights = service.search(searchRequest.origin(), searchRequest.destination(), searchRequest.departureDate().atStartOfDay(), searchRequest.returnDate().atStartOfDay(), searchRequest.numberOfPassenger());
         List<FlightSearchResult> result = flights.stream().map(this::convert).toList();
+        log.info(result);
         return ServerResponse.ok().body(result);
     }
 }

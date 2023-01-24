@@ -1,6 +1,13 @@
 package org.deblock.exercise.api.v1.contract;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public record FlightSearchRequest(String origin, String destination, LocalDateTime departureDate, LocalDateTime returnDate, Short numberOfPassenger) {
+import java.time.LocalDate;
+
+public record FlightSearchRequest(
+        String origin, String destination,
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        LocalDate departureDate,
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        LocalDate returnDate, Short numberOfPassenger) {
 }
