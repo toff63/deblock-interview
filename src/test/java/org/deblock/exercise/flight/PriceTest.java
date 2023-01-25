@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Named.named;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class PriceTest {
+public class PriceTest {
 
     record TestInput(Price price, BigDecimal expected) {
     }

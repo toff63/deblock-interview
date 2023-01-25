@@ -1,0 +1,35 @@
+Request to CrazyAir:
+
+curl http://mockbin.org/bin/304a82b7-53db-426e-97fd-8c2487aa19a5 | jq ''
+Need to change that to a list
+[{
+  "airline": "Air France",
+  "price": "1234.56",
+  "cabinclass": "E",
+  "departureAirportCode": "LHR",
+  "destinationAirportCode": "JFK",
+  "departureDate": "2023-02-02T06:22:00",
+  "arrivalDate": "2023-02-02T16:13:00"
+},
+{
+  "airline": "BMI",
+  "price": "1300.56",
+  "cabinclass": "E",
+  "departureAirportCode": "LHR",
+  "destinationAirportCode": "JFK",
+  "departureDate": "2023-02-02T07:42:00",
+  "arrivalDate": "2023-02-02T15:23:00"
+},
+{
+  "airline": "Delta Airline",
+  "price": "1267.56",
+  "cabinclass": "B",
+  "departureAirportCode": "LHR",
+  "destinationAirportCode": "JFK",
+  "departureDate": "2023-02-02T08:22:00",
+  "arrivalDate": "2023-02-02T20:13:00"
+}]
+
+Reqiest to DeBlock:
+
+url -X GET  'localhost:8080/search?origin=LHR&destination=JFK&departureDate=2023-02-02&returnDate=2023-02-28&numberOfPassenger=1' -H 'Accept: application/json' | jq ''

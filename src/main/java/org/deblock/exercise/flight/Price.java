@@ -8,6 +8,7 @@ public record Price(
         Optional<BigDecimal> tax,
         Optional<BigDecimal> discount) {
 
+
     public static Price of(BigDecimal basePRice) {
         return new Price(basePRice, Optional.empty(), Optional.empty());
     }
@@ -17,4 +18,5 @@ public record Price(
         BigDecimal finalDiscountPercent = discount.orElse(BigDecimal.ZERO).movePointLeft(2);
         return basePrice.multiply(BigDecimal.ONE.subtract(finalDiscountPercent)).subtract(finalTax);
     }
+
 }

@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FlighSearchConfiguration {
-
+public class JacksonConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         return JsonMapper.builder()

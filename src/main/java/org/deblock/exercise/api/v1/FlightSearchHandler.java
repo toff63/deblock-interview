@@ -7,22 +7,32 @@ import org.deblock.exercise.api.v1.contract.Supplier;
 import org.deblock.exercise.flight.Flight;
 import org.deblock.exercise.flight.SearchProvider;
 import org.deblock.exercise.search.FlightSearchService;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.function.ServerRequest;
-import org.springframework.web.servlet.function.ServerResponse;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.BodyExtractor;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
-import javax.inject.Inject;
-import javax.servlet.ServletException;
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Controller
 @Log4j2
 public class FlightSearchHandler {
-    final private Map<SearchProvider, Supplier> searchProviderConverter = Map.of(SearchProvider.ToughJet, Supplier.ToughJet, SearchProvider.CrazyAir, Supplier.CrazyAir);
-    @Inject
-    FlightSearchService service;
+    private final Map<SearchProvider, Supplier> searchProviderConverter = Map.of(SearchProvider.ToughJet, Supplier.ToughJet, SearchProvider.CrazyAir, Supplier.CrazyAir);
+    private final FlightSearchService service;
+
+    private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+
+    public FlightSearchHandler(FlightSearchService service) {
+        this.service = service;
+    }
 
     private FlightSearchResult convert(Flight flight) {
         return new FlightSearchResult(
@@ -36,12 +46,24 @@ public class FlightSearchHandler {
         );
     }
 
-    public ServerResponse searchFlight(ServerRequest request) throws ServletException, IOException {
-        FlightSearchRequest searchRequest = request.body(FlightSearchRequest.class);
+    public Mono<ServerResponse> searchFlight(ServerRequest request) {
+        FlightSearchRequest searchRequest = request.body(this::extract);
         log.info(searchRequest);
-        List<Flight> flights = service.search(searchRequest.origin(), searchRequest.destination(), searchRequest.departureDate().atStartOfDay(), searchRequest.returnDate().atStartOfDay(), searchRequest.numberOfPassenger());
-        List<FlightSearchResult> result = flights.stream().map(this::convert).toList();
+        Mono<List<Flight>> futureFlights = service.search(searchRequest.origin(), searchRequest.destination(), searchRequest.departureDate(), searchRequest.returnDate(), searchRequest.numberOfPassenger());
+        Mono<List<FlightSearchResult>> result = futureFlights.map(flights -> flights.stream().map(this::convert).toList());
         log.info(result);
-        return ServerResponse.ok().body(result);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(result, new ParameterizedTypeReference<List<FlightSearchResult>>() {
+        });
+    }
+
+    private FlightSearchRequest extract(ServerHttpRequest serverHttpRequest, BodyExtractor.Context context) {
+        MultiValueMap<String, String> queryParams = serverHttpRequest.getQueryParams();
+        return new FlightSearchRequest(
+                queryParams.getFirst("origin"),
+                queryParams.getFirst("destination"),
+                LocalDate.parse(queryParams.getFirst("departureDate"), formatter),
+                LocalDate.parse(queryParams.getFirst("returnDate"), formatter),
+                Short.valueOf(queryParams.getFirst("numberOfPassenger"))
+        );
     }
 }
