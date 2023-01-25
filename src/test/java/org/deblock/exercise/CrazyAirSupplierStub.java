@@ -27,7 +27,7 @@ public class CrazyAirSupplierStub extends CrazyAirSupplier {
                 [
                   {
                     "airline": "Air France",
-                    "price": "1234.56",
+                    "price": 1234.56,
                     "cabinclass": "E",
                     "departureAirportCode": "LHR",
                     "destinationAirportCode": "JFK",
@@ -36,7 +36,7 @@ public class CrazyAirSupplierStub extends CrazyAirSupplier {
                   },
                   {
                     "airline": "BMI",
-                    "price": "1300.56",
+                    "price": 1300.56,
                     "cabinclass": "E",
                     "departureAirportCode": "LHR",
                     "destinationAirportCode": "JFK",
@@ -45,7 +45,7 @@ public class CrazyAirSupplierStub extends CrazyAirSupplier {
                   },
                   {
                     "airline": "Delta Airline",
-                    "price": "1267.56",
+                    "price": 1267.56,
                     "cabinclass": "B",
                     "departureAirportCode": "LHR",
                     "destinationAirportCode": "JFK",

@@ -6,14 +6,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 public class CrazyAirSupplier extends FlightSupplier<CrazyAirRequest, CrazyAirResponse> {
-    // mocked endpoint: http://mockbin.org/bin/304a82b7-53db-426e-97fd-8c2487aa19a5
-
     private final WebClient client;
     private final CrazyAirConverter converter;
 
     public CrazyAirSupplier(WebClient.Builder builder, CrazyAirConverter converter) {
         // TODO move hard coded url to property file
-        this.client = builder.baseUrl("http://mockbin.org/bin/304a82b7-53db-426e-97fd-8c2487aa19a5").build();
+        this.client = builder.baseUrl("http://mockbin.org/bin/19a8f504-6d48-44ea-af01-c2f3ba839909").build();
         this.converter = converter;
     }
 

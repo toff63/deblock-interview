@@ -1,5 +1,7 @@
 package org.deblock.exercise.flightsuppliers.crazyair;
 
+import org.deblock.exercise.flightsuppliers.SupplierResponse;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -8,7 +10,10 @@ enum CrazyAirCabinClass {
 }
 
 public record CrazyAirResponse(String airline,
-                               BigDecimal price, CrazyAirCabinClass cabinclass, String departureAirportCode,
+                               BigDecimal price,
+                               CrazyAirCabinClass cabinclass,
+                               String departureAirportCode,
                                String destinationAirportCode,
-                               LocalDateTime departureDate, LocalDateTime arrivalDate) {
+                               LocalDateTime departureDate,
+                               LocalDateTime arrivalDate) implements SupplierResponse {
 }
