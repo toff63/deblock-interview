@@ -1,9 +1,11 @@
-package org.deblock.exercise;
+package org.deblock.exercise.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirConverter;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirSupplier;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetConverter;
+import org.deblock.exercise.stubs.CrazyAirSupplierStub;
+import org.deblock.exercise.stubs.ToughJetSupplierStub;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,6 +25,7 @@ public class SupplierTestConfiguration {
     }
 
     @Bean
+    @Primary
     public ToughJetSupplierStub toughJetSupplier() {
         return new ToughJetSupplierStub(webClientBuilder, toughJetConverter(), objectMapper);
     }

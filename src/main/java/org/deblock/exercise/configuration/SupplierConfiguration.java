@@ -9,11 +9,13 @@ import org.deblock.exercise.flightsuppliers.toughjet.ToughJetConverter;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetSupplier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
 @Configuration
+@Profile("production")
 public class SupplierConfiguration {
 
     private final WebClient.Builder webClientBuilder;

@@ -1,4 +1,6 @@
-package org.deblock.exercise.api.v1.contract;
+package org.deblock.exercise.search;
+
+import org.deblock.exercise.constraints.ConsistentDateParameters;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
@@ -6,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@ConsistentDateParameters
 public record FlightSearchRequest(
         @NotNull
         @Size(min = 3, max = 3)

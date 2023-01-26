@@ -1,5 +1,6 @@
 package org.deblock.exercise.api.v1.contract;
 
+import org.deblock.exercise.search.FlightSearchRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,23 @@ class FlightSearchRequestTest {
 
         assertEquals(1, constraintViolations.size());
         assertEquals("must be a date in the present or in the future", constraintViolations.iterator().next().getMessage());
+    }
+
+    @Test
+    public void returnDateAfterStartDate() {
+        Short nbPassenger = 2;
+        FlightSearchRequest request = new FlightSearchRequest(
+                "LHR",
+                "JFK",
+                today.plusDays(15),
+                today.plusDays(1),
+                nbPassenger);
+
+        Set<ConstraintViolation<FlightSearchRequest>> constraintViolations =
+                validator.validate(request);
+
+        assertEquals(1, constraintViolations.size());
+        assertEquals("Return date must be after departure date", constraintViolations.iterator().next().getMessage());
     }
 
     @Test

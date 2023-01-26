@@ -11,8 +11,11 @@ public class CrazyAirSupplier extends FlightSupplier<CrazyAirRequest, CrazyAirRe
 
     public CrazyAirSupplier(WebClient.Builder builder, CrazyAirConverter converter) {
         // TODO move hard coded url to property file
-        // TODO Handle errors
+        super(builder);
         this.client = builder.baseUrl("http://mockbin.org/bin/19a8f504-6d48-44ea-af01-c2f3ba839909").build();
+        // URL used to test client errors with more time I would look into writing an automatic test for this use case
+        //        this.client = builder.baseUrl("http://mockbin.org/bin/fb60ffb2-a99f-4e31-950b-82c83fb28678").build();
+
         this.converter = converter;
     }
 

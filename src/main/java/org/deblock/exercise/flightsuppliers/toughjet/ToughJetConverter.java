@@ -4,10 +4,10 @@ import org.deblock.exercise.flight.Flight;
 import org.deblock.exercise.flight.Price;
 import org.deblock.exercise.flight.SearchProvider;
 import org.deblock.exercise.flightsuppliers.FlightSupplierResponseConverter;
+import org.deblock.exercise.search.FlightSearchRequest;
 import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -25,8 +25,8 @@ public class ToughJetConverter implements FlightSupplierResponseConverter<ToughJ
     }
 
     @Override
-    public ToughJetRequest toRequest(String origin, String destination, LocalDate departureDate, LocalDate returnDate, Short numberOfPassenger) {
-        return new ToughJetRequest(origin, destination, departureDate, returnDate, numberOfPassenger);
+    public ToughJetRequest toRequest(FlightSearchRequest request) {
+        return new ToughJetRequest(request.origin(), request.destination(), request.departureDate(), request.returnDate(), request.numberOfPassenger());
     }
 
     @Override

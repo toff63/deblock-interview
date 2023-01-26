@@ -1,4 +1,4 @@
-package org.deblock.exercise;
+package org.deblock.exercise.stubs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetConverter;
@@ -29,8 +29,8 @@ public class ToughJetSupplierStub extends ToughJetSupplier {
                 "discount": 10,
                 "departureAirportName": "LHR",
                 "arrivalAirportName": "JFK",
-                "outboundDateTime": "2023-02-02T23:22:00Z",
-                "inboundDateTime": "2023-02-03T02:22:00Z"
+                "outboundDateTime": "2033-02-02T23:22:00Z",
+                "inboundDateTime": "2033-02-21T02:22:00Z"
               },
               {
                 "carrier": "British Airways",
@@ -39,8 +39,8 @@ public class ToughJetSupplierStub extends ToughJetSupplier {
                 "discount": 5,
                 "departureAirportName": "LHR",
                 "arrivalAirportName": "JFK",
-                "outboundDateTime": "2023-02-02T20:22:00Z",
-                "inboundDateTime": "2023-02-02T23:22:00Z"
+                "outboundDateTime": "2033-02-02T20:22:00Z",
+                "inboundDateTime": "2033-02-21T23:22:00Z"
               }
             ]
             """;

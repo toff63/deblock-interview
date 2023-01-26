@@ -5,10 +5,10 @@ import org.deblock.exercise.flight.Flight;
 import org.deblock.exercise.flight.Price;
 import org.deblock.exercise.flight.SearchProvider;
 import org.deblock.exercise.flightsuppliers.FlightSupplierResponseConverter;
+import org.deblock.exercise.search.FlightSearchRequest;
 import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -29,8 +29,8 @@ public class CrazyAirConverter implements FlightSupplierResponseConverter<CrazyA
     }
 
     @Override
-    public CrazyAirRequest toRequest(String origin, String destination, LocalDate departureDate, LocalDate returnDate, Short numberOfPassenger) {
-        return new CrazyAirRequest(origin, destination, departureDate, returnDate, numberOfPassenger);
+    public CrazyAirRequest toRequest(FlightSearchRequest request) {
+        return new CrazyAirRequest(request.origin(), request.destination(), request.departureDate(), request.returnDate(), request.numberOfPassenger());
     }
 
     public Flight toFlight(CrazyAirRequest req, CrazyAirResponse res) {

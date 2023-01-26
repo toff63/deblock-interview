@@ -1,14 +1,11 @@
 package org.deblock.exercise.flightsuppliers;
 
 import org.deblock.exercise.flight.Flight;
-
-import java.time.LocalDate;
+import org.deblock.exercise.search.FlightSearchRequest;
 
 public interface FlightSupplierResponseConverter<SupplierRequest, SupplierResult> {
 
-    public SupplierRequest toRequest(String origin, String destination,
-                                     LocalDate departureDate,
-                                     LocalDate returnDate, Short numberOfPassenger);
+    public SupplierRequest toRequest(FlightSearchRequest searchRequest);
 
     public Flight toFlight(SupplierRequest request, SupplierResult result);
 }
