@@ -46,6 +46,7 @@ public class FlightSearchHandler {
         );
     }
 
+    // TODO Handle errors
     public Mono<ServerResponse> searchFlight(ServerRequest request) {
         FlightSearchRequest searchRequest = request.body(this::extract);
         log.info(searchRequest);

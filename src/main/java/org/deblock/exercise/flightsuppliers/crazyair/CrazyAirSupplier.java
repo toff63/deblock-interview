@@ -11,6 +11,7 @@ public class CrazyAirSupplier extends FlightSupplier<CrazyAirRequest, CrazyAirRe
 
     public CrazyAirSupplier(WebClient.Builder builder, CrazyAirConverter converter) {
         // TODO move hard coded url to property file
+        // TODO Handle errors
         this.client = builder.baseUrl("http://mockbin.org/bin/19a8f504-6d48-44ea-af01-c2f3ba839909").build();
         this.converter = converter;
     }
