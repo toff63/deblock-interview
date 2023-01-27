@@ -3,6 +3,7 @@ package org.deblock.exercise.stubs;
 import org.deblock.exercise.exception.SupplierException;
 import org.deblock.exercise.flightsuppliers.FlightSupplier;
 import org.deblock.exercise.flightsuppliers.FlightSupplierResponseConverter;
+import org.deblock.exercise.flightsuppliers.SuppliedFlightValidator;
 import org.deblock.exercise.functional.Either;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -14,7 +15,7 @@ public class GenericSupplier extends FlightSupplier<GenericRequest, GenericRespo
     private Either<SupplierException, List<GenericResponse>> responses;
 
     public GenericSupplier(WebClient.Builder builder, Either<SupplierException, List<GenericResponse>> responses) {
-        super(builder);
+        super(builder, new SuppliedFlightValidator());
         this.responses = responses;
     }
 

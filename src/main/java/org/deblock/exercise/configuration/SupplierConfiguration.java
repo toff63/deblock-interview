@@ -1,6 +1,7 @@
 package org.deblock.exercise.configuration;
 
 import org.deblock.exercise.flightsuppliers.FlightSupplier;
+import org.deblock.exercise.flightsuppliers.SuppliedFlightValidator;
 import org.deblock.exercise.flightsuppliers.SupplierRequest;
 import org.deblock.exercise.flightsuppliers.SupplierResponse;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirConverter;
@@ -31,7 +32,7 @@ public class SupplierConfiguration {
 
     @Bean
     public ToughJetSupplier toughJetSupplier() {
-        return new ToughJetSupplier(webClientBuilder, toughJetConverter());
+        return new ToughJetSupplier(webClientBuilder, toughJetConverter(), suppliedFlightValidator());
     }
 
     @Bean
@@ -41,7 +42,12 @@ public class SupplierConfiguration {
 
     @Bean
     public CrazyAirSupplier crazyAirSupplier() {
-        return new CrazyAirSupplier(webClientBuilder, crazyAirConverter());
+        return new CrazyAirSupplier(webClientBuilder, crazyAirConverter(), suppliedFlightValidator());
+    }
+
+    @Bean
+    public SuppliedFlightValidator suppliedFlightValidator() {
+        return new SuppliedFlightValidator();
     }
 
     @Bean

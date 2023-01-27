@@ -1,6 +1,7 @@
 package org.deblock.exercise.stubs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.deblock.exercise.flightsuppliers.SuppliedFlightValidator;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetConverter;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetRequest;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetResponse;
@@ -15,8 +16,8 @@ import java.util.List;
 public class ToughJetSupplierStub extends ToughJetSupplier {
     private final ObjectMapper objectMapper;
 
-    public ToughJetSupplierStub(WebClient.Builder builder, ToughJetConverter converter, ObjectMapper objectMapper) {
-        super(builder, converter);
+    public ToughJetSupplierStub(WebClient.Builder builder, ToughJetConverter converter, ObjectMapper objectMapper, SuppliedFlightValidator validator) {
+        super(builder, converter, validator);
         this.objectMapper = objectMapper;
     }
 

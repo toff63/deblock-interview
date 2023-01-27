@@ -1,5 +1,8 @@
 package org.deblock.exercise.exception;
 
+/**
+ * Exception thrown when a call to a supplier fails
+ */
 public class SupplierException extends RuntimeException {
     public SupplierException() {
     }

@@ -8,6 +8,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
+/**
+ * HTTP API router
+ */
 @Configuration(proxyBeanMethods = false)
 public class FlightSearchRoutingConfiguration {
 

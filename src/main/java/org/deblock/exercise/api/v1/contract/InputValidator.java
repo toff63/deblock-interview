@@ -11,6 +11,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Class validating client sent enough information in the right format to process the request
+ */
 @Component
 public class InputValidator {
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;

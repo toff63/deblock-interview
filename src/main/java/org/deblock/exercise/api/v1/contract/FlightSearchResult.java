@@ -8,6 +8,17 @@ import org.deblock.exercise.serializer.IsoDateTimeSerializer;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+/**
+ * API Response
+ *
+ * @param airline
+ * @param supplier
+ * @param fare
+ * @param departureAirportCode
+ * @param destinationAirportCode
+ * @param departureDate
+ * @param arrivalDate
+ */
 public record FlightSearchResult(
         String airline,
         Supplier supplier,

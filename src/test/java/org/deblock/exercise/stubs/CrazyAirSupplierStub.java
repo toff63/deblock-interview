@@ -1,6 +1,7 @@
 package org.deblock.exercise.stubs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.deblock.exercise.flightsuppliers.SuppliedFlightValidator;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirConverter;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirRequest;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirResponse;
@@ -16,8 +17,8 @@ public class CrazyAirSupplierStub extends CrazyAirSupplier {
 
     private final ObjectMapper objectMapper;
 
-    public CrazyAirSupplierStub(WebClient.Builder builder, CrazyAirConverter converter, ObjectMapper objectMapper) {
-        super(builder, converter);
+    public CrazyAirSupplierStub(WebClient.Builder builder, CrazyAirConverter converter, ObjectMapper objectMapper, SuppliedFlightValidator validator) {
+        super(builder, converter, validator);
         this.objectMapper = objectMapper;
     }
 

@@ -17,6 +17,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
+/**
+ * Class responsible for calling flight suppliers and aggregating their results
+ */
 @Service
 public class FlightSearchService {
     private final List<FlightSupplier<? extends SupplierRequest, ? extends SupplierResponse>> suppliers;

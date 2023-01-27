@@ -11,6 +11,9 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deserialize ISO_DATE_TIME format to Instant
+ */
 public class IsoDateTimeDeserializer extends StdScalarDeserializer<Instant> {
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME.withZone(ZoneId.systemDefault());
 

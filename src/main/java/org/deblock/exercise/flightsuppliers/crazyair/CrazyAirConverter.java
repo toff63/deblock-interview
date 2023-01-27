@@ -14,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Class responsible for translation between Deblock model and CrazyAir API
+ */
 public class CrazyAirConverter implements FlightSupplierResponseConverter<CrazyAirRequest, CrazyAirResponse> {
 
     private final Map<CrazyAirCabinClass, CabinClass> cabinClassMapping = Map.of(CrazyAirCabinClass.E, CabinClass.Economy, CrazyAirCabinClass.B, CabinClass.Business);

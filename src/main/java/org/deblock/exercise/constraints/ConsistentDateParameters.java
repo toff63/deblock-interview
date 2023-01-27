@@ -4,6 +4,9 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
+/**
+ * Annotation to validate if a return date is either the same day, either after the return date
+ */
 @Constraint(validatedBy = ConsistentDateParameterValidator.class)
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

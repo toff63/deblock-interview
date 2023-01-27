@@ -5,6 +5,9 @@ import org.deblock.exercise.search.FlightSearchRequest;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Annotation to validate if a return date is either the same day, either after the return date
+ */
 public class ConsistentDateParameterValidator implements ConstraintValidator<ConsistentDateParameters, FlightSearchRequest> {
     @Override
     public boolean isValid(FlightSearchRequest value, ConstraintValidatorContext context) {

@@ -1,6 +1,5 @@
-package org.deblock.exercise.api.v1.contract;
+package org.deblock.exercise.search;
 
-import org.deblock.exercise.search.FlightSearchRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

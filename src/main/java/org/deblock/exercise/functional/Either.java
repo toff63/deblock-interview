@@ -5,6 +5,12 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Functional type Either let you return either type L, either R.
+ *
+ * @param <L> Left type
+ * @param <R> Right type
+ */
 final public class Either<L, R> {
     public static <L, R> Either<L, R> left(L value) {
         return new Either<>(Optional.of(value), Optional.empty());

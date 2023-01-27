@@ -11,6 +11,9 @@ import java.net.URI;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * Class responsible for translation between Deblock model and ToughJet API
+ */
 public class ToughJetConverter implements FlightSupplierResponseConverter<ToughJetRequest, ToughJetResponse> {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;

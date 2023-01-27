@@ -1,6 +1,7 @@
 package org.deblock.exercise.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.deblock.exercise.flightsuppliers.SuppliedFlightValidator;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirConverter;
 import org.deblock.exercise.flightsuppliers.crazyair.CrazyAirSupplier;
 import org.deblock.exercise.flightsuppliers.toughjet.ToughJetConverter;
@@ -27,7 +28,11 @@ public class SupplierTestConfiguration {
     @Bean
     @Primary
     public ToughJetSupplierStub toughJetSupplier() {
-        return new ToughJetSupplierStub(webClientBuilder, toughJetConverter(), objectMapper);
+        return new ToughJetSupplierStub(webClientBuilder, toughJetConverter(), objectMapper, validator());
+    }
+
+    public SuppliedFlightValidator validator() {
+        return new SuppliedFlightValidator();
     }
 
     @Bean
@@ -38,7 +43,7 @@ public class SupplierTestConfiguration {
     @Bean
     @Primary
     public CrazyAirSupplier crazyAirSupplier() {
-        return new CrazyAirSupplierStub(webClientBuilder, crazyAirConverter(), objectMapper);
+        return new CrazyAirSupplierStub(webClientBuilder, crazyAirConverter(), objectMapper, validator());
     }
 
     @Bean

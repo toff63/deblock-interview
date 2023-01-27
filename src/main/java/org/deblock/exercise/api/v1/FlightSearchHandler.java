@@ -21,6 +21,9 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class responsible for exposing flight search service through HTTP.
+ */
 @Controller
 @Log4j2
 public class FlightSearchHandler {
